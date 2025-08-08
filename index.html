@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSCI 2690 Fall 24</title>
+    <title>CSCI 2690 Fall 25</title>
     <link rel="stylesheet" href="styles.css">
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -24,7 +24,7 @@
 
     <header>
         <h1>Brown CSCI 2690: Cloud and Datacenter Operating Systems</h1>
-		<h2>Fall 2024</h2>
+		<h2>Fall 2025</h2>
 		<div class="header-details">
         	<p>Lecture Schedule: Tuesdays & Thursdays, 9:00 AM - 10:20 AM</p>
         	<p>Location: <a href=http://brown.edu/Facilities/Facilities_Management/maps/index.php#building/WATSONCIT>CIT Center 101</a></p>
@@ -45,7 +45,16 @@
     <section id="course-description">
         <h2>Course Description</h2>
         <p>
-		Most of the large-scale web applications and enterprise applications we use daily rely on datacenters for compute, storage, networking and security, commonly via cloud computing interfaces. There are many research questions around how to use the datacenter as a computing platform to architect the “best” applications, all while datacenter hardware is rapidly evolving. This is a graduate-level seminar on cloud and datacenter operating systems. We will study topics such as serverless computing, kernel bypass operating systems, tiered and far memory systems, hardware accelerators, and disaggregation. The goals of the class are to (1) learn about the challenges surrounding cloud and datacenter systems, (2) practice reading, analyzing, and presenting systems research papers on these topics, and (3) perform a semester-long research project and present findings to the class.
+		All of large-scale web applications and enterprise applications we
+        interact with daily rely on datacenters for compute, storage, networking
+        and security, commonly via cloud computing interfaces. There are many
+        research questions around how to use the datacenter as a computing
+        platform to architect the “best” applications, all while datacenter
+        hardware is rapidly evolving. This is a graduate-level seminar on cloud
+        and datacenter operating systems. We will study topics such as
+        serverless computing, kernel bypass operating systems, tiered and far
+        memory systems, hardware accelerators, disaggregation and machine
+        learning system. The goals of the class are to (1) learn about the challenges surrounding cloud and datacenter systems, (2) practice reading, analyzing, and presenting systems research papers on these topics, and (3) perform a semester-long research project and present findings to the class.
 		</p>
     </section>
 
@@ -67,10 +76,15 @@
         <h2>Class Reading, Reading Responses (30%)</h2>
 	<p>For each class, I will assign 1-2 papers for reading and a paper reading response assignment. Readings and responses must be completed before class:
 	<ul>
-		<li>Responses are due the <b>evening before class</b>, <b>at 5:00 PM ET (posted in the calendar below)</b>. You <b>can miss up to three of these summaries</b> with no penalty towards your grade across the whole semester, no questions asked.
+		<li>Responses are due the <b>evening before class</b>, <b>at 5:00 PM ET
+                (posted in the calendar below)</b>. You <b>can miss up to three
+                of these summaries</b> with no penalty towards your grade across
+            the whole semester, no questions asked. Note that submitting
+            <b>after 5:00 PM ET is considered a miss</b>. The deadline ensures I
+            have enough time to go through responses to prepare for class.
 </li>
 <li>
-    Responses will be by Google Form linked on the calendar below; sometimes they will be a more specific question, while other times I will ask for a paper critique. I will go over how to write a
+    Responses will be on Gradescope linked on the calendar below; sometimes they will be a more specific question, while other times I will ask for a paper critique. I will go over how to write a
     good critique on the first day of class.
 	</li>
 	</li>
@@ -82,16 +96,14 @@
         <h2>Class Discussion Lead & Class Participation (25%)</h2>
 		<p>
 	    Attendance is mandatory, as a large part of the class is an in-person discussion. However, it is fine to miss class ocassionally, especially if you are sick or have other extenuating
-        circumstances. Frequent absences (including not having read the reading and not participating) will be penalized.
+        circumstances. Frequent absences (including not having read the reading
+        and not participating in class) will be penalized.
         <br><br>
 
 		Separately, you will sign up to lead the discussion for at least one class over the entire semester. This specifically involves:
 		<ul>
 			<li>
                 Sharing a list of discussion points with the instructor <b>at least three weekdays in advance, at 12 PM </b>(Friday for a Tuesday class, or Monday for a Thursday class), to which the instructor will give feedback.
-			</li>
-			<li>
-				Reading some of your classmates' reading responses the evening before the lecture and incorporating elements from these into the discussion.
 			</li>
 			<li>
 			    Leading the class discussion on the day of class, by steering the class towards your list of discussion point.
@@ -106,8 +118,10 @@
         <h2>Warmup Assignment (5%)</h2>
 		The goal of the warmup assignment is to familiarize students with <a href=https://www.cloudlab.us/>Cloudlab</a>, so students may use it as an experimentation platform for their projects:
 		<ul>
-			<li>The <a href="https://brown-csci2690.github.io/classwebsite-fall24/warmup.html">assignment</a> will be posted by <b>Thursday, September 6</b>.</li>
-			<li>The assignment is due on <b>Tuesday, September 24</b>.</li>
+			<li>The <a
+                    href="https://brown-csci2690.github.io/classwebsite-fall24/warmup.html">assignment</a>
+                will be posted by <b>Thursday, September 4</b>.</li>
+			<li>The assignment is due on <b>Tuesday, September 23</b>.</li>
 			<li>To be enrolled in the class, you must do the warmup assignment.</li>
 		</ul>
     </section>
@@ -115,8 +129,8 @@
 
     <section id="class-project">
         <h2>Semester-Long Project (40%)</h2>
-		More details about the project are <a href="https://brown-csci2690.github.io/classwebsite-fall24/project.html">here</a>. An ideal project could later become a strong submission to a systems conference such as OSDI, SOSP, ATC, Eurosys, or NSDI. Some administrative notes about the project:
-
+		More details about the project are <a
+            href="https://brown-csci2690.github.io/classwebsite-fall25/project.html">here</a>. An ideal project could later become a strong submission to a systems conference such as OSDI, SOSP, ATC, Eurosys, or NSDI. Some administrative notes about the project:
 		<ul>
 
 			<li>Projects should be completed ideally in <b>groups of 2-3</b>; if you really would like to work alone, please see me after class, and we can discuss your situation.
@@ -155,37 +169,37 @@
             <tbody>
                 <!-- Add rows for each class meeting -->
                 <tr>
-                    <td>Tues 9/10</td>
+                    <td>Tues 9/9</td>
                     <td>Project Assignment Posted</td>
 					<td><a href=/classwebsite-fall24/project.html>Project Info</a></td>
                 </tr>
                 <tr>
-                    <td>Mon 9/30</td>
+                    <td>Mon 9/29</td>
                     <td>Project Proposal Due</td>
 					<td>Submission Info Coming</a></td>
                 </tr>
                 <tr>
-                    <td>Mon 9/30 - Oct 4</td>
+                    <td>Mon 9/29 - Fri 10/3</td>
                     <td>Mandatory Initial Check-In</td>
 					<td>Signup Link Coming</a></td>
                 </tr>
                 <tr>
-                    <td>Mon 10/28</td>
+                    <td>Mon 10/27</td>
                     <td>Mid-semester progress report due</td>
 					<td>Submission Info Coming</a></td>
                 </tr>
                 <tr>
-                    <td>Oct 28 - Nov 1</td>
+                    <td>10/27 - 10/31</td>
                     <td>Mandatory Mid-Semester Check-In</td>
 					<td>Signup Link Coming</a></td>
                 </tr>
                 <tr>
-                    <td>Tues Dec 10 (and Dec 12 depending on enrollment)</td>
+                    <td>Tues 12/9 (and 12/11 depending on enrollment)</td>
                     <td>In-class project presentations</td>
 					<td>Presentation Info Coming</a></td>
                 </tr>
                 <tr>
-                    <td>Fri Dec 13</td>
+                    <td>Fri 12/12</td>
                     <td>Final Paper Due (in lieu of a final exam)</td>
 					<td>Final Paper Info Coming</a></td>
                 </tr>
@@ -252,14 +266,14 @@ Finally, by taking this class, you agree to never post any solutions for the war
             <tbody>
                 <!-- Add rows for each class meeting -->
                 <tr>
-                    <td>Thurs 9/6</td>
+                    <td>Thurs 9/4</td>
                     <td>Introduction to the Course</td>
                     <td>No Assigned Reading</td>
                     <td>No Assigned Questionnaire</td>
                     <td><a href="slides/day1slides.pdf">Intro Slides</a></td>
                 </tr>
                 <tr>
-                    <td>Tues 9/10</td>
+                    <td>Tues 9/9</td>
                     <td>Multicore</td>
                     <td>
                         <a href="https://www.sigops.org/s/conferences/sosp/2009/papers/baumann-sosp09.pdf">Barrelfish</a><br>
@@ -271,7 +285,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs 9/12</td>
+                    <td>Thurs 9/11</td>
                     <td>What abstractions should the OS provide?</td>
                     <td>
                         <a
@@ -286,7 +300,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues 9/17</td>
+                    <td>Tues 9/16</td>
                     <td>High-Performance I/O</td>
                     <td>
                         <a
@@ -302,7 +316,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs 9/19</td>
+                    <td>Thurs 9/18</td>
                     <td>High Performance I/O cont.</td>
                     <td>
                         <a href="https://dl.acm.org/doi/pdf/10.1145/3281411.3281443">XDP</a><br>
@@ -317,7 +331,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues 9/24</td>
+                    <td>Tues 9/23</td>
                     <td>RDMA</td>
                     <td>
                         <a
@@ -330,7 +344,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs 9/26</td>
+                    <td>Thurs 9/25</td>
                     <td>Kernel Bypass & OS Abstractions</td>
                     <td>
                         <a href="https://irenezhang.net/papers/demikernel-sosp21.pdf">Demikernel</a><br>
@@ -342,7 +356,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Oct 1</td>
+                    <td>Tues 9/30</td>
                     <td>NIC Interfaces</td>
                     <td>
                         <a href="https://www.usenix.org/system/files/osdi23-sadok.pdf">Enso</a>
@@ -354,7 +368,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Oct 3</td>
+                    <td>Thurs 10/2</td>
                     <td>CPU Scheduling</td>
                     <td>
                         <a href="https://www.usenix.org/system/files/nsdi19-ousterhout.pdf">Shenango</a></br>
@@ -366,7 +380,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Oct 8</td>
+                    <td>Tues 10/7</td>
                     <td>CPU Scheduling Cont.</td>
                     <td>
                         <a
@@ -381,7 +395,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Oct 10</td>
+                    <td>Thurs 10/9</td>
                     <td>CPU Scheduling & Interference</td>
                     <td>
                         <a href="https://www.usenix.org/system/files/osdi20-fried.pdf">Caladan</a>
@@ -393,7 +407,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Oct 15</td>
+                    <td>Tues 10/14</td>
                     <td>Virtualization</td>
                     <td>
                     <a href="https://dl.acm.org/doi/pdf/10.1145/945445.945462">Xen and the Art of Virtualization</a><br>
@@ -406,7 +420,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Oct 17</td>
+                    <td>Thurs 10/16</td>
                     <td>Firecracker</td>
                     <td>
                         <a href="https://www.usenix.org/system/files/nsdi20-paper-agache.pdf">Firecracker</a>
@@ -418,8 +432,8 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Oct 23</td>
-                    <td>Guest Lecture by <a href="https://joshfried.io/">Josh Fried</a></td>
+                    <td>Tues 10/21</td>
+                    <td>Junction</td>
                     <td>
                         <a href="https://www.usenix.org/system/files/nsdi24-fried.pdf">Junction</a></br>
                     </td>
@@ -430,17 +444,16 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Oct 25</td>
-                    <td><b>NO CLASS (Project Hacking Day)</b></td>
+                    <td>Thurs 10/23</td>
+                    <td><b>TBD</b></td>
                     <td>
                     </td>
-                    <td>
-                        <div id="due-date">Use the extra time to make progress on your projects.</div></td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Oct 29</td>
+                    <td>Tues 10/28</td>
                     <td>Memory Management & Large Pages</td>
                     <td>
                         <a href="https://www.usenix.org/system/files/osdi21-hunter.pdf">HugePage Aware Allocator</a>
@@ -454,7 +467,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Oct 31</td>
+                    <td>Thurs 10/30</td>
                     <td>Warehouse-Scale Memory Management</td>
                     <td>
                         <a href="https://www.cs.purdue.edu/homes/csjgwang/CloudNativeDB/WSCMemoryASPLOS19.pdf">Software-Defined Far Memory</a>
@@ -465,8 +478,8 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Nov 5</td>
-                    <td><b>NO CLASS! Election</b></td>
+                    <td>Tues 11/4</td>
+                    <td>TBD</td>
                     <td>
                     </td>
                     <td></td>
@@ -474,7 +487,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Nov 7</td>
+                    <td>Thurs 11/6</td>
                     <td>Far Memory</td>
                     <td>
                         <a
@@ -488,7 +501,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Nov 12</td>
+                    <td>Tues 11/11</td>
                     <td>Cloud Databases</td>
                     <td>
                     <a
@@ -502,7 +515,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Nov 14</td>
+                    <td>Thurs 11/13</td>
                     <td>Data Processing Systems</td>
                     <td>
                         <a
@@ -516,7 +529,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Nov 19</td>
+                    <td>Tues 11/18</td>
                     <td>Serverless Programming Models</td>
                     <td>
                         <a href="https://arxiv.org/pdf/2208.13068">Apiary</a></br>
@@ -528,7 +541,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Nov 21</td>
+                    <td>Thurs 11/20</td>
                     <td>Serverless Programming Models Cont.</td>
                     <td>
                         <a href="https://www.usenix.org/system/files/atc19-fouladi.pdf">gg</a>
@@ -540,7 +553,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Nov 25</td>
+                    <td>Tues 11/24</td>
                     <td>Sustainability</a></td>
                     <td>
                         <a href="https://dl.acm.org/doi/pdf/10.1145/3575693.3575754">Carbon Aware Datacenters</a></br>
@@ -553,7 +566,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Oct 25</td>
+                    <td>Thurs 11/24</td>
                     <td><b>NO CLASS (Thanksgiving)</b></td>
                     <td>
                     </td>
@@ -563,8 +576,8 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Dec 3</td>
-                    <td>Microservices: Guest Lecture by Akshay Narayan</td>
+                    <td>Tues 12/2</td>
+                    <td>Microservices and Service Mesh</td>
                     <td> <a href="https://www.usenix.org/system/files/osdi23-saokar.pdf">Service
                         Meshes at Meta</a>
                     </td>
@@ -574,7 +587,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Dec 5</td>
+                    <td>Thurs 12/4</td>
                     <td>Sky Computing</td>
                     <td>
                         <a
@@ -590,7 +603,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Tues Dec 10</td>
+                    <td>Tues 12/9</td>
                     <td>Class Project Presentations</td>
                     <td>
                     </td>
@@ -599,7 +612,7 @@ Finally, by taking this class, you agree to never post any solutions for the war
                 </tr>
                 <!-- Continue adding rows for each date until 12/10/2024 -->
                 <tr>
-                    <td>Thurs Dec 12</td>
+                    <td>Thurs 12/11</td>
                     <td>Class Project Presentations</td>
                     <td>
                     </td>
