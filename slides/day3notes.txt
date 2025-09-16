@@ -1,0 +1,40 @@
+Background on Linux Networking vs. Userspace Networking
+
+Linux Networking:
+- Many copies, context swithes, interrupts and queueing
+
+Userspace networking:
+- Idea is that application directly writes into network queues and reads
+  from network queues
+- By "device driver queues" -- we mean the application directly writes and reads
+  from packets that the NIC can access
+- When used with a run-to-completion scheduling model, removes context switch
+  and interrupt overhead (when app submits a packet, the driver will send the
+packet)
+- Cons: hard to program (no more TCP stack), polling may waste cycles when packets aren't being
+  received
+
+Notes on IX/Arrakis
+
+Problem IX is tackling:
+- Why is it hard to achieve high throughput and low latency in TCP/IP stack?
+    - Handling 1 packet a time is good for low latency
+    - Batching is better for high load, but packets end up having higher latency
+- What is kernel bypass networking?
+    - User-level code has direct access to hardware
+    - What about other users of NIC?
+        - Like in Arrakis, SR-IOV lets us virtualize the NIC hardware
+    - How do we protect important memory? (User shouldn’t be able to DMA some protected OS structure?
+        - Use an IOMMU - IO memory management unit
+            - How should I/O device read/write memory
+            - Device should not be able to R/W arbitrary host memory
+            - Same goes for guest VMs in case of virtualization
+            - Job of IOMMU is to perform this memory mapping between device memory and host
+                - Can be implemented w and w/o virtualization — w virtualization, implementation is similar to EPT we discussed last time
+                - IOMMU also checks permissions
+            - Pinning — must “pre-allocate” physical memory for each device to access and physically allocate space for it
+                - Required because devices have no way to handle page faults
+                - Recall: page fault happens when a virtual memory address is not in physical memory but is swapped out to disk
+                    - What happens if a device reads/writes memory that is not present? Bad things
+                    - Solution is to “pin” memory for each device
+
