@@ -1,0 +1,27 @@
+EBPF Background
+- Extend kernel functionality; safely w/o  kernel module or kernel modification (extended BPF or Berkeley packet filter)
+- Hook driven — run automatically when kernel passes hook point
+    - System calls
+    - Function entry/exit
+    - Kernel trace point
+    - Network events
+- If desired event doesn’t exist, you can create a kernel or user probe to attach almost everywhere (as long as you know address of the code segment you want to jump to)
+- When you load an ebpf program, this process rewrites the jump address at hookpoint to jump to ebpf function and back
+- Goals of ebpf verification process:
+    - Program loading ebpf program has correct privileges
+        - Only privileged processes can load bps programs
+    - Program doesn’t crash or harm system
+    - Program runs to completion
+- Verifier can prove program terminates and doesn't execute instructions that
+  would cause fault/crash (e.g., checks memory address writes to see if they are
+valid)
+- Maps:
+    - Not just hash maps and arrays — LRU, ring buffer, stack trace, longest
+      prefix match  
+    - Use maps to store state across invocations of hookpoint
+
+Polling vs. Interrupts
+- Need to poll completion queues (after you submit an I/O request, the device will write a marker to a descriptor saying that the I/O is completed)
+- And on receive queues -> poll to know when data is filled 
+- This busy spins the CPU (vs. if you had interrupts which woke up a process when one of these things happened) and wastes resources
+- For XDP use case, they cited “when one or more polling threads share the same processor”, there can be CPU contention 
