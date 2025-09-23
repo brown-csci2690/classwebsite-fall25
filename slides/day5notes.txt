@@ -1,0 +1,74 @@
+Background Notes on RDMA and PRISM paper
+
+
+RDMA = remote direct memory access
+	- remote reads and writes without CPU involvement (one-sided)
+	- two-sided send, receive also
+	- one-sided CAS functionality (compare limited to equality)
+
+Why is this different from DPDK?
+- DPDK does involve server side involvement, to poll for incoming messages (rx_burst) and polls or completions for outgoing messages (tx_burst)
+- In addition, for any reliability the app needs (e.g., handling packet losses or out of order packets), there would need to be a stack that handles this, which uses CPU cycles
+
+
+In contrast, in RDMA, the transport protocol is offloaded to hardware (while supporting the types of messages outlined above)
+Concerns such as:
+- ACKs: did my packet get to the server?
+- How many messages can be in flight at once (flow control as well as congestion control)
+
+Two major implementations of idea of “transport protocol is offloaded to hardware”
+- RoCE = RDMA over converged ethernet
+    - Relies on “PFC” — priority flow control in the network
+    - Switches must be able to send PAUSE frames to upstream entities (upstream switches or the sending NIC) when queue is full (past some threshold), and another type of frame to indicate resuming sending
+    - This makes the network “lossless”
+    - In the rare case of a packet drop, RDMA NICs must also support:
+        - Sending nACKS when receiving out-of-order packets (I last received X packet)
+        - And responding to nACK by resending all packets after X
+- IWARP = full TCP implementation inside NIC hardware
+    - This is less supported, as TCP requires more out of the NIC hardware (is harder to implement)
+    - RoCE ensures reliability but *is not* a full TCP implementation
+
+
+DPDK in contrast doesn’t require hardware support in NICs — just hardware access to NIC queues
+
+
+PRISM paper: RDMA API primitives
+- Claim that above primitives make implementing applications that require the following difficult:
+    - Complex data structures
+    - Out-of-place writes/data consistency
+    - Transactions
+    - Chaining operations (doing multiple operations with the same RDMA message)
+- This paper: add new primitives to make applications relying on the above easier to implement:
+    - Indirect reads/writes
+        - Add contains a pointer to another buffer
+    - Allocate (given a specific queue pair)
+        - Useful for variable sized objects and out-of-place updates
+    - Enhanced CAS
+        - Equality, greater than, less than
+        - Can use bit masks as well for swap (useful when updating part of a data structure)
+    - Operation chaining
+        - Do multiple operations at onc
+Using RDMA for OCC:
+- FARM is a paper that uses RDMA for optimistic concurrency control:
+    - First, use one-sided writes to read all data in read set
+    - Make write updates locally
+    - Lock all objects in write set (using compare and swap to mark the lock as being taken)
+    - Check that the objects in the read set still have their original values with further one-sided reads (if not, another transaction has updated them since this transaction started)
+    - Update written objects
+    - Unlock
+- In contrast, with new primitives, PRISM reduces the number of total remote steps 
+    - First, for each key also maintain:
+        - PR = transaction ID of most recent transaction that read values and has prepared to commit
+        - PW = transaction ID of most recent transaction that needs to write and has prepared the commit
+        - C = transaction ID that has successfully committed
+    - Phase 1 = execution:
+        - Read read-set values, get current C
+        - Write write set locally
+    - Phase 2 = prepare
+        - Choose TS for transaction: must be minimum number later than all IDs of most recent transaction that has read the value
+        - Prepare:
+            - Read validation: check no concurrent transaction has prepared to write anything in the write set (passed prepare phase
+            - Write validation: check writing anything in write set DOESN’T invalidate other concurrent reads (e.g., by looking at PR on the keys to write to)
+    - Phase 3 = commit
+        - Apply writes: use allocate + write + CAS
+    - Idea is that with some workloads, this will be more beneficial than Farm (see figure 9 and 10 in paper)
