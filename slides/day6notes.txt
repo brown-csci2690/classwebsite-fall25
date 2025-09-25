@@ -1,0 +1,39 @@
+Heterogeneity of KB devices:
+- RDMA, as we went over last class, generally offers reliable delivery (you don’t need a software TCP stack to keep track of packets, acks, and retries)
+- On the other hand, to use DPDK, you need to implement reliability on top (e.g., TCP)
+- So this paper tries to create a common interface over heterogenous KB devices:
+    - You can have the same app code that *links* to use the particular library OS of the device you have on hand (the app uses the high level PDPIX api, depending on what is linked, the implementation of the interface will change)
+    - This is kind of like what was suggested in the exokernel paper!
+
+Zero-Copy/Memory Allocation/DMA-Safe Memory
+IOMMU = memory management unit for I/O devices
+- As we went over previously, handles translation of virtual addresses into RAM physical addresses so the device can read/write to memory
+- IOMMUs also have to handle some functionality for mapping interrupts 
+- There is an IOMMU in the CPU (so the device cannot mess up CPU memory / other data structures)
+- Some NICs also have IOMMU functionality
+- Either way, the memory needs to be *physically backed* if any sort of DMA is going to occur — the way to do this is to use physically pinned memory — as the devices can’t handle page faults (e.g., if there is a fault when trying to read/write an address, 
+    - With DPDK’s internal memory allocator, it uses huge pages (2 MB pages), which are physically pinned, so this is a hack
+    - But theoretically, you could use 4 kB page as long as you pin the memory (system call mprotect()) 
+- So any memory being used to read/wrote needs to be “DMA-capable”
+    - Demikernel handles this differently per device:
+        - For DPDK, it builds a wrapper around the DPDK allocator (and integrates it with their own allocator)
+        - For RDMA, they register / pin the memory on the first time it is accessed dynamically
+- What does zero-copy mean?
+    - Zero-copy generally refers to removing CPU copies when processing application data to send and application data to receive:
+        - E.g., when a packet is received, the NIC will DMA the data into some CPU buffer
+            - This buffer is owned by the networking stack (e.g., in DPDK, some DPDK buffer)
+            - The network stack in zero-copy should give a pointer to this memory directly for the network stack to be “zero-copy”; any network stack processing (e.g. TCP) should operate on headers and not copy the data
+    - What does this mean on the send side?
+        - Well, one definition is once the application puts data into the network stack and it is copied into a DMA buffer, then the network stack never copies it again (so no copies within the network stack)
+        - Another definition is that the network stack should be able to directly accept pointers to app data and send these directly
+            - This leaves two options:
+                - Either applications should be changed to actually *allocate* from this DMA memory, so, there isn’t even a copy from the application into the networking stack (you just pass a pointer)
+                - Or the network stack makes memory DMA-safe on send (which might involve registering memory on demand)
+            - 
+
+Write Protection/UAF Protection
+So: what bad things could happen if the network stack and app share buffers?
+- Bad # 1: app frees pointer to memory allocator while network stack still has to send it, memory allocator re-allocates buffer and now memory is garbage
+- Bad # 2: app writes to pointer while network stack is still sending
+- Demikernel covers bad # 1 but not # 2 (“write protection”)
+
